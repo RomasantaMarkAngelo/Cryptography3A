@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=[device-width], initial-scale=1.0" />
+    <title>Philippines</title>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+    ></script>
+  </head>
+
+  <body>
+    <!------ HEADER ------->
+
+    <section class="header">
+      <nav>
+        <a href="index.html"><img src="images/p.jpeg" alt="logo" /></a>
+        <div class="nav-links" id="nav-links">
+          <i class="nav-icons fa fa-times" onclick="hideMenu()"></i>
+
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="reviews.html">REVIEWS</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="hfhf.html">HFHF</a></li>
+          </ul>
+        </div>
+        <i class="nav-icons fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+
+      <div class="text-box">
+        <h1>Tourist Spots In The Philippines</h1>
+        <p>
+          It's More Fun In the Philippines
+        </p>
+        <a href="#" class="hero-btn">Visit Us To Know More</a>
+      </div>
+    </section>
+    
+  
+            def caesar_cipher_encrypt(plaintext, shift):
+                encrypted_text = ""
+                for char in plaintext:
+                if char.isalpha():
+                    shifted = ord(char) + shift
+                    if char.islower():
+                        if shifted > ord('z'):
+                        shifted -= 26
+                    elif shifted < ord('a'):
+                    shifted += 26
+                elif char.isupper():
+                    if shifted > ord('Z'):
+                    shifted -= 26
+                    elif shifted < ord('A'):
+                    shifted += 26
+                    encrypted_text += chr(shifted)
+                else:
+                    encrypted_text += char
+                return encrypted_text
+
+            def caesar_cipher_decrypt(ciphertext, shift):
+                return caesar_cipher_encrypt(ciphertext, -shift)
+
+            def main():
+                plaintext = input("Enter plaintext: ")
+                shift = int(input("Enter Key (1-25): "))
+                if 1 <= shift <= 25:
+                    encrypted_text = caesar_cipher_encrypt(plaintext, shift)
+                    print("Encrypted text:", encrypted_text)
+
+                    decrypted_text = caesar_cipher_decrypt(encrypted_text, shift)
+                    print("Decrypted text:", decrypted_text)
+                else:
+                    print("Invalid Key. Key must be between 1 and 25.")
+
+            if __name__ == "__main__":
+            main()
+
+        <!-----FOOTER----->
+    <section class="footer">
+      <p>
+        <p>The Philippines is an archipelago consisting of 7,100 islands with a total land area of approximately 300,000 square kilometers. <br>
+          It has three major island groups-Luzon in the north, Visayas in the middle and Mindanao further down in the South. <br>
+          The current population of the Philippines is about 80 million people.<br>@copyright<p></p>
+      </p>
+      <div class="icons">
+        <i class="icons-items fab fa-facebook-f"></i>
+        <i class="icons-items fab fa-twitter"></i>
+        <i class="icons-items fab fa-instagram"></i>
+        <i class="icons-items fab fa-linkedin-in"></i>
+      </div>
+      
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>

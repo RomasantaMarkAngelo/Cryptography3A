@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=[device-width], initial-scale=1.0" />
+    <title>Cryptography</title>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+    ></script>
+  </head>
+
+  <body>
+    <!------ HEADER ------->
+
+    <section class="header">
+      <nav>
+        <a href="index.html"><img src="images/log.png" alt="logo" /></a>
+        <div class="nav-links" id="nav-links">
+          <i class="nav-icons fa fa-times" onclick="hideMenu()"></i>
+
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="onetimepad.html">One Time Pad</a></li>
+            <li><a href="playfair.html">Playfair Cipher</a></li>
+            <li><a href="vigenere.html">Vigenère Cipher</a></li>
+            <li><a href="caesar.html">Caesar Cipher</a></li>
+          </ul>
+        </div>
+        <i class="nav-icons fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+
+      <div class="text-box">
+        <h1>Secure Data in Application Development: A Cryptographic Approach</h1>
+        <br></br>
+        <a href="#" class="hero-btn">Visit Us To Know More</a>
+      </div>
+    </section>
+
+    <!----- Island ----->
+
+    <section class="island">
+      <h2>Introduction</h2>
+      <p>
+        In today's digital age, it is critical to ensure data security when developing applications. As 
+cyber-attacks get more sophisticated, developers must include strong cryptographic algorithms to 
+protect critical information. This exercise will look at a case study that highlights security vulnerabilities 
+in data storage and management during application development, create a security audit strategy, 
+deploy cryptographic methods, and assess their effectiveness.
+      </p>
+   </section>
+
+    <!-- PROUD -->
+    <section class="proud">
+      <h2>The Genius Behind Cryptographic Algorithms.</h2>
+      <p>
+        Behind every encrypted message, a brilliant mind weaves the cloak of cryptographic algorithms.
+      </p>
+
+      <div class="row">
+        <div class="proud-col">
+          <img src="images/frank.jpg" alt="" />
+          <div class="layer">
+            <h3>Frank Miller <br> </br> (One Time Pad)</h3>
+          </div>
+        </div>
+
+        <div class="proud-col">
+          <img src="images/Charles.webp" alt="" />
+          <div class="layer">
+        <h3>Charles Wheatstone <br> </br> (Playfair Cipher)</h3>
+          </div>
+        </div>
+
+        <div class="proud-col">
+          <img src="images/giovan.jpg" alt="" />
+          <div class="layer">
+          <h3>Giovan Battista Bellaso <br> </br> (Vigenère Cipher)</h3>
+          </div>
+        </div>
+
+        <div class="proud-col">
+          <img src="images/julius.jpg" alt="" />
+          <div class="layer">
+            <h3>Julius Caesar <br> </br> (Caesar Cipher)</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-----FOOTER----->
+    <section class="footer">
+      <p>@copyright</p>
+      <div class="icons">
+        <i class="icons-items fab fa-facebook-f"></i>
+        <i class="icons-items fab fa-twitter"></i>
+        <i class="icons-items fab fa-instagram"></i>
+        <i class="icons-items fab fa-linkedin-in"></i>
+      </div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>

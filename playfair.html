@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=[device-width], initial-scale=1.0" />
+    <title>Cryptography</title>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+    ></script>
+  </head>
+
+  <body>
+    <!------ HEADER ------->
+
+    <section class="header1">
+      <nav>
+        <a href="index.html"><img src="images/pf_510x489.png" alt="logo" /></a>
+        <div class="nav-links" id="nav-links">
+          <i class="nav-icons fa fa-times" onclick="hideMenu()"></i>
+
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="onetimepad.html">One Time Pad</a></li>
+            <li><a href="playfair.html">Playfair Cipher</a></li>
+            <li><a href="vigenere.html">Vigenère Cipher</a></li>
+            <li><a href="caesar.html">Caesar Cipher</a></li>  
+                <style>
+                    body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f0f0f0;
+                    text-align: center;
+                    padding-top: 50px;
+                  }
+                  .container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  }
+                  input[type="text"], textarea {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                  }
+                  button {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                  }
+                  button:hover {
+                    background-color: #45a049;
+                  }
+                </style>
+                </head>
+                <body></a></li>
+          </ul>
+        </div>
+        <i class="nav-icons fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+
+      <div class="text-box">
+        <h1>Playfair Cipher</h1>
+        <p>The Playfair cipher or Playfair square or Wheatstone–Playfair cipher is a manual symmetric encryption technique 
+            and was the first literal digram substitution cipher. The scheme was invented in 1854 by Charles Wheatstone</p>
+      </div>
+    </section>
+    <!------ HEADER ------->
+    
+    
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    #container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label, input, textarea {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        width: calc(100% - 20px);
+        height: 100px;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h2>Playfair Cipher</h2>
+    <label for="key">Enter Key:</label>
+    <input type="text" id="key" placeholder="Key" required>
+    <label for="plaintext">Enter Text:</label>
+    <textarea id="plaintext" placeholder="Text to encrypt/decrypt" required></textarea>
+    <button onclick="encrypt()">Encrypt</button>
+    <button onclick="decrypt()">Decrypt</button>
+    <label for="result">Result:</label>
+    <textarea id="result" readonly></textarea>
+</div>
+
+<script>
+    function generateSquare(key) {
+        // Generate the Playfair cipher square
+        var alphabet = "abcdefghiklmnopqrstuvwxyz"; // Exclude 'j' according to the Playfair rules
+        var square = [];
+        key = key.replace(/j/g, "i"); // Replace 'j' with 'i'
+        key += alphabet; // Append the rest of the alphabet after the key
+
+        for (var i = 0; i < key.length; i++) {
+            if (!square.includes(key[i])) {
+                square.push(key[i]);
+            }
+        }
+
+        return square;
+    }
+
+    function findPositions(square, letter) {
+        // Find the positions of a letter in the cipher square
+        var positions = [];
+        for (var i = 0; i < square.length; i++) {
+            if (square[i] === letter) {
+                positions.push(i);
+            }
+        }
+        return positions;
+    }
+
+    function encrypt() {
+        var key = document.getElementById("key").value.toLowerCase().replace(/[^a-z]/g, "");
+        var plaintext = document.getElementById("plaintext").value.toLowerCase().replace(/[^a-z]/g, "");
+        var square = generateSquare(key);
+        var ciphertext = "";
+
+        // Step 2: Divide the message into pairs of letters (digrams)
+        var digrams = [];
+        for (var i = 0; i < plaintext.length; i += 2) {
+            var pair = plaintext[i];
+            if (i + 1 < plaintext.length && plaintext[i] !== plaintext[i + 1]) {
+                pair += plaintext[i + 1];
+            } else {
+                pair += 'x'; // If the message has an odd number of letters, append 'x'
+            }
+            digrams.push(pair);
+        }
+
+        // Step 3: Generate the Ciphertext
+        for (var j = 0; j < digrams.length; j++) {
+            var letter1 = digrams[j][0];
+            var letter2 = digrams[j][1];
+            var positions1 = findPositions(square, letter1);
+            var positions2 = findPositions(square, letter2);
+
+            var row1 = Math.floor(positions1[0] / 5);
+            var col1 = positions1[0] % 5;
+            var row2 = Math.floor(positions2[0] / 5);
+            var col2 = positions2[0] % 5;
+
+            if (row1 === row2) {
+                // Same row
+                ciphertext += square[row1 * 5 + (col1 + 1) % 5];
+                ciphertext += square[row2 * 5 + (col2 + 1) % 5];
+            } else if (col1 === col2) {
+                // Same column
+                ciphertext += square[((row1 + 1) % 5) * 5 + col1];
+                ciphertext += square[((row2 + 1) % 5) * 5 + col2];
+            } else {
+                // Form a rectangle
+                ciphertext += square[row1 * 5 + col2];
+                ciphertext += square[row2 * 5 + col1];
+            }
+        }
+
+        document.getElementById("result").value = ciphertext;
+    }
+
+    function decrypt() {
+        var key = document.getElementById("key").value.toLowerCase().replace(/[^a-z]/g, "");
+        var ciphertext = document.getElementById("plaintext").value.toLowerCase().replace(/[^a-z]/g, "");
+        var square = generateSquare(key);
+        var plaintext = "";
+
+        // Step 4: Decrypt the Ciphertext
+        for (var j = 0; j < ciphertext.length; j += 2) {
+            var letter1 = ciphertext[j];
+            var letter2 = ciphertext[j + 1];
+            var positions1 = findPositions(square, letter1);
+            var positions2 = findPositions(square, letter2);
+
+            var row1 = Math.floor(positions1[0] / 5);
+            var col1 = positions1[0] % 5;
+            var row2 = Math.floor(positions2[0] / 5);
+            var col2 = positions2[0] % 5;
+
+            if (row1 === row2) {
+                // Same row
+                plaintext += square[row1 * 5 + (col1 + 4) % 5];
+                plaintext += square[row2 * 5 + (col2 + 4) % 5];
+            } else if (col1 === col2) {
+                // Same column
+                plaintext += square[((row1 + 4) % 5) * 5 + col1];
+                plaintext += square[((row2 + 4) % 5) * 5 + col2];
+            } else {
+                // Form a rectangle
+                plaintext += square[row1 * 5 + col2];
+                plaintext += square[row2 * 5 + col1];
+            }
+        }
+
+        document.getElementById("result").value = plaintext;
+    }
+</script>
+
+
+    </section>
+
+   
+    <!-----FOOTER----->
+    <section class="footer">
+      <p>
+        @copyright
+      </p>
+      <div class="icons">
+        <i class="icons-items fab fa-facebook-f"></i>
+        <i class="icons-items fab fa-twitter"></i>
+        <i class="icons-items fab fa-instagram"></i>
+        <i class="icons-items fab fa-linkedin-in"></i>
+      </div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>

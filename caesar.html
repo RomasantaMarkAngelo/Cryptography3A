@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=[device-width], initial-scale=1.0" />
+    <title>Cryptography</title>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+    ></script>
+  </head>
+
+  <body>
+    <!------ HEADER ------->
+
+    <section class="header1">
+      <nav>
+        <a href="index.html"><img src="images/cea_1_510x489.png" alt="logo" /></a>
+        <div class="nav-links" id="nav-links">
+          <i class="nav-icons fa fa-times" onclick="hideMenu()"></i>
+
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="onetimepad.html">One Time Pad</a></li>
+            <li><a href="playfair.html">Playfair Cipher</a></li>
+            <li><a href="vigenere.html">Vigenère Cipher</a></li>
+            <li><a href="caesar.html">Caesar Cipher</a></li>  
+                <style>
+                    body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f0f0f0;
+                    text-align: center;
+                    padding-top: 0px;
+                  }
+                  .container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  }
+                  input[type="text"], textarea {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                  }
+                  button {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                  }
+                  button:hover {
+                    background-color: #45a049;
+                  }
+                </style>
+                </head>
+                <body></a></li>
+          </ul>
+        </div>
+        <i class="nav-icons fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+
+      <div class="text-box">
+        <h1>Vernam Cipher</h1>
+        <p>The Caesar cipher is named after Julius Caesar, who, according to Suetonius, used it with a shift of three (A becoming D when encrypting, and D becoming A when decrypting) to protect messages of military significance. While Caesar's 
+            was the first recorded use of this scheme, other substitution ciphers are known to have been used earlier.</p>
+      </div>
+    </section>
+    <!------ HEADER ------->
+
+    
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: calc(100% - 22px); /* Adjusted width */
+        padding: 10px;
+        margin-bottom: 10px; /* Adjusted margin */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px; /* Adjusted margin */
+    }
+    button:hover {
+        background-color: #4CAF50;
+    }
+    .output {
+        margin: 50px auto;
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .output-label {
+        margin-bottom: 10px; /* Adjusted margin */
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Caesar Cipher</h2>
+    <label for="plaintext">Plaintext:</label>
+    <input type="text" id="plaintext">
+    <label for="shift">Shift:</label>
+    <input type="number" id="shift" min="0" max="25">
+    <button onclick="encrypt()">Encrypt</button>
+    <button onclick="decrypt()">Decrypt</button>
+    <label class="output-label" for="ciphertext">Ciphertext:</label> <!-- Adjusted margin for consistency -->
+    <div class="output">
+        <p id="ciphertext"></p>
+    </div>
+</div>
+
+<script>
+    function encrypt() {
+        const plaintext = document.getElementById('plaintext').value.toUpperCase();
+        const shift = parseInt(document.getElementById('shift').value);
+        let ciphertext = '';
+
+        for (let i = 0; i < plaintext.length; i++) {
+            if (plaintext[i] >= 'A' && plaintext[i] <= 'Z') {
+                let charCode = plaintext.charCodeAt(i);
+                charCode = (charCode - 65 + shift) % 26 + 65;
+                ciphertext += String.fromCharCode(charCode);
+            } else {
+                ciphertext += plaintext[i];
+            }
+        }
+
+        document.getElementById('ciphertext').innerText = ciphertext;
+    }
+
+    function decrypt() {
+        const ciphertext = document.getElementById('plaintext').value.toUpperCase();
+        const shift = parseInt(document.getElementById('shift').value);
+        let plaintext = '';
+
+        for (let i = 0; i < ciphertext.length; i++) {
+            if (ciphertext[i] >= 'A' && ciphertext[i] <= 'Z') {
+                let charCode = ciphertext.charCodeAt(i);
+                charCode = (charCode - 65 - shift + 26) % 26 + 65;
+                plaintext += String.fromCharCode(charCode);
+            } else {
+                plaintext += ciphertext[i];
+            }
+        }
+
+        document.getElementById('ciphertext').innerText = plaintext;
+    }
+</script>
+
+    <!-----FOOTER----->
+    <section class="footer">
+        <p>
+          @copyright
+        </p>
+        <div class="icons">
+          <i class="icons-items fab fa-facebook-f"></i>
+          <i class="icons-items fab fa-twitter"></i>
+          <i class="icons-items fab fa-instagram"></i>
+          <i class="icons-items fab fa-linkedin-in"></i>
+        </div>
+      </section>
+
+</body>
+</html>
